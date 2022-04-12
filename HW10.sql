@@ -1,3 +1,20 @@
+-- 3.
+SELECT customer_email, category_name, num_films
+FROM	
+	(SELECT Customer.email AS customer_email, Category.name AS category_name, COUNT(Category.category_id) AS number, COUNT(Film.film_id) AS num_films
+	FROM Film, Category, Customer, Rental, Inventory, Film_category
+	WHERE Film.film_id = Film_category.film_id
+	AND Film_category.category_id = Category.category_id
+	AND Customer.customer_id = Rental.customer_id
+	AND Rental.inventory_id = Inventory.inventory_id
+	AND Inventory.film_id = Film.film_id
+	GROUP BY Customer.email, Category.name) AS TEMP
+GROUP BY customer_email, category_name
+HAVING MAX(number)
+ORDER BY MAX(number) DESC
+LIMIT 5;
+
+
 -- 4.  Using count, how many customers do we have? 
 SELECT COUNT(customer_id)
 FROM Customer;
