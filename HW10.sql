@@ -1,4 +1,12 @@
--- 3.
+-- 3. SQL practice with Sakila. Recall that Sakila also has information about customers 
+-- and what films they rented in addition to movies and actors. 
+-- Let's say we want to know which customers tend to rent movies from the same category. 
+-- We should not group by movie, because that would show the number of times a customer rented it. 
+-- Create a query that gives us as a result the customer's email, 
+-- the top category the customer rents from, and the number of films from that category, 
+-- and limit to the top 5 customers. This is tricky, you'll need some inner joins 
+-- to gather this data. Show your query and show your result.
+
 SELECT customer_email, category_name, num_films
 FROM	
 	(SELECT Customer.email AS customer_email, Category.name AS category_name, COUNT(Category.category_id) AS number, COUNT(Film.film_id) AS num_films
