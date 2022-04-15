@@ -51,7 +51,7 @@ LIMIT 5;
 -- together with the number of times they were rented, 
 -- ordered by popularity in reverse. Display the title of the movie 
 -- and the number of times it was rented, limited to top 5.
-SELECT Film.title, COUNT(Rental.inventory_id)
+SELECT Film.title, COUNT(Rental.inventory_id) AS num_rented
 FROM Film, Inventory, Rental
 WHERE Inventory.inventory_id = Rental.inventory_id
 AND Film.film_id = Inventory.film_id
